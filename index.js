@@ -18,7 +18,9 @@ app.listen(PORT, () => {
 // GET   /books   --> obtener todos los libros
 app.get("/books", async (req, res) => {
     try {
-        res.status(200).json({ message: "books are returned" });
+        const books = await pool.query("SELECT * FROM book");
+
+        res.status(200).json({ message: "books are returned", data: books.rows });
     } catch (error) {
         res.json({ error: error.message });
     }
@@ -29,7 +31,10 @@ app.get("/books", async (req, res) => {
 app.get("/books/:id", async (req, res) => {
     try {
         const {id} = req.params;
-        res.status(200).json({ message: `specific book is returned with id: ${id}`});
+
+        const book = await pool.query("SELECT * FROM book WHERE id=$1", [id]);
+
+        res.status(200).json({ message: `specific book is returned:`, data: book.rows });
     } catch (error) {
         res.json({ error: error.message });
     }

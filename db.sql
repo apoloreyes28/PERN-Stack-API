@@ -9,3 +9,7 @@ CREATE TABLE book (
 INSERT INTO book (id, name, description) 
 VALUES
 (101, X, beatiful book);
+
+SELECT * FROM book;
+
+SELECT * FROM book WHERE id=101;
