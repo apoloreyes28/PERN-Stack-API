@@ -12,7 +12,7 @@ app.listen(PORT, () => {
 });
 
 
-// GET   /books     --> obtener todos los libros
+// GET   /books   --> obtener todos los libros
 app.get("/books", async (req, res) => {
     try {
         res.status(200).json({ message: "books are returned" });
@@ -22,7 +22,7 @@ app.get("/books", async (req, res) => {
 });
 
 
-// GET   /books/:id  --> obtener un libro en especifíco
+// GET   /books/:id   --> obtener un libro en especifíco
 app.get("/books/:id", async (req, res) => {
     try {
         const {id} = req.params;
@@ -37,10 +37,31 @@ app.get("/books/:id", async (req, res) => {
 app.post("/books", async (req, res) => {
     try {
         const {name, description} = req.body;
-        res.status(201).json({ message: `book was created: ${name}, ${description}` });
+        res.status(201).json({ message: `books was created: ${name}, ${description}` });
     } catch (error) {
         res.json({ error: error.message });
     }
 });
 
 
+// PUT   /books/:id   --> actualizar un libro
+app.put("/books/:id", async (req, res) => {
+    try {
+        const {id} = req.params;
+        const {name, description} = req.body;
+        res.status(200).json({ message: `book was updated: ${name}, ${description}` });
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+});
+
+
+// DELETE   /books/:id   --> eliminar un libro
+app.delete("/books/:id", async (req, res) => {
+    try {
+        const {id} = req.params;
+        res.status(200).json({ message: `specific book is deleted with id: ${id}`});
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+});
