@@ -1,7 +1,11 @@
 CREATE DATABASE bookDB;
 
 CREATE TABLE book (
-    id VARCHAR(20) primary key,
+    id VARCHAR(255) PRIMARY KEY,
     name VARCHAR(20),
     description VARCHAR(255)
 );
+
+INSERT INTO book (id, name, description) 
+VALUES
+(101, X, beatiful book);
