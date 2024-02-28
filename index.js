@@ -75,7 +75,10 @@ app.put("/books/:id", async (req, res) => {
 app.delete("/books/:id", async (req, res) => {
     try {
         const {id} = req.params;
-        res.status(200).json({ message: `specific book is deleted with id: ${id}`});
+
+        await pool.query("DELETE FROM book WHERE id=$1",[id]);
+
+        res.status(200).json({ message: `book was deleted`});
     } catch (error) {
         res.json({ error: error.message });
     }

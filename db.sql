@@ -13,3 +13,5 @@ VALUES
 SELECT * FROM book;
 
 SELECT * FROM book WHERE id=101;
+
+DELETE FROM book WHERE id=101;
